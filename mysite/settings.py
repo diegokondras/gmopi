@@ -86,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
 # Database
 DATABASES = {
 	'default': {
@@ -141,6 +140,7 @@ LOGIN_REDIRECT_URL = '/'
 
 # Logout
 LOGOUT_REDIRECT_URL = '/'
+
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 

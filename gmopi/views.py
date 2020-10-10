@@ -3,10 +3,6 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.utils import timezone
 
-
-from django_tables2 import SingleTableView
-from .tables import ProdutoTable, FornecedorTable, EquipamentoTable, CategoriaProdutoTable
-
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import UpdateView
@@ -17,11 +13,31 @@ from django.core.mail import send_mail, BadHeaderError
 from .forms import ContatoForm
 import logging
 
-
-
 from django.shortcuts import render
 from django.db.models import Sum
 from django.http import JsonResponse
+
+# Tables
+from django_tables2 import SingleTableView
+from .tables import ProdutoTable, FornecedorTable, EquipamentoTable, CategoriaProdutoTable
+
+# Rest Framework
+from rest_framework import generics
+from .serializers import ProdutoSerializer, CategoriaProdutoSerializer, EquipamentoSerializer
+
+# Create your views here.
+
+class ProdutoList(generics.ListCreateAPIView):
+    queryset = Produto.objects.all()
+    serializer_class = ProdutoSerializer
+
+class CategoriaProdutoList(generics.ListCreateAPIView):
+    queryset = Produto.objects.all()
+    serializer_class = CategoriaProdutoSerializer
+
+class EquipamentoProdutoList(generics.ListCreateAPIView):
+    queryset = Produto.objects.all()
+    serializer_class = EquipamentoSerializer
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -172,8 +188,6 @@ class CategoriaProdutoListView(SingleTableView):
     table_class = CategoriaProdutoTable
     template_name = 'produto/categoria_produto_list.html'
 
-
-
 def produto_chart(request):
     labels = []
     data = []
@@ -187,11 +201,6 @@ def produto_chart(request):
         'labels': labels,
         'data': data,
     })
-
-
-
-
-
 
 def pie_chart(request):
     labels = []

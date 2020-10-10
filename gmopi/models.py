@@ -23,9 +23,9 @@ class CategoriaProduto(models.Model):
 
 
 class Dimensoes(models.Model):
-    espessura = models.CharField(max_length=100)
-    comprimento = models.CharField(max_length=100)
-    largura = models.CharField(max_length=100)
+    espessura = models.CharField(max_length=100, null=True, blank=True)
+    comprimento = models.CharField(max_length=100, null=True, blank=True)
+    largura = models.CharField(max_length=100, null=True, blank=True)
 
 class Produto(models.Model):
     nome = models.CharField(max_length=100, primary_key=True)
@@ -74,15 +74,11 @@ class Estoque(models.Model):
     saldo_estoque = models.CharField(max_length=200, null=False, blank=False)
     historico_movimentacao = models.OneToOneField(HistoricoMovimentacaoEstoque, on_delete=models.CASCADE, blank=True)
 
-
-
 class MovimentacaoEstoque(models.Model):
     produto  = models.ForeignKey(Produto, on_delete=models.CASCADE, null=False, blank=False)
     tipo_movimentacao = models.CharField(max_length=7, choices=MOVIMENTACOES_CHOICES, null=False, blank=False)
     quantidade_movimentada = models.CharField(max_length=200, null=False, blank=False)
     data_movimentacao = models.CharField(max_length=10,  blank=True)
-
-
 
 class Jornada(models.Model):
     jornada = models.CharField(max_length=200, null=False, blank=False)
@@ -124,10 +120,6 @@ class Equipamento(models.Model):
 
     def __str__(self):
         return self.nome
-
-
-
-
 
 class Pessoa(models.Model):
     nome = models.CharField(max_length=100)

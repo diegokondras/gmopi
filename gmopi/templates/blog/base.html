@@ -25,9 +25,7 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="{% url 'home' %}" target=""><span class="material-icons">
-eco
-</span></a>
+      <a class="navbar-brand" href="{% url 'home' %}" target="">GMopi</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -53,7 +51,6 @@ eco
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laminação</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Tornos</a>
-                <a class="dropdown-item" href="#">Torno 2</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Relatórios</a>
               </div>
@@ -64,7 +61,6 @@ eco
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Secadores</a>
-                <a class="dropdown-item" href="#">Secador 2</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Relatórios</a>
               </div>
@@ -73,11 +69,11 @@ eco
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Estoque</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a href="{% url 'categoria_produto_new' %}" class="dropdown-item"><span class="material-icons">add</span>Categoria de Produtos</a>
                 <a href="{% url 'produto_new' %}" class="dropdown-item">Produto</a>
-                <a href="{% url 'produto_list' %}" class="dropdown-item"><span class="material-icons">list</span>Produtos</a>
+                <a href="{% url 'categoria_produto_new' %}" class="dropdown-item">Categoria de Produtos</a>
+                <a href="{% url 'produto_list' %}" class="center dropdown-item">Lista de Produtos</a>
                 <a href="{% url 'fornecedor_new' %}" class="dropdown-item">Fornecedor</a>
-                <a href="{% url 'fornecedor_list' %}" class="dropdown-item"><i class="material-icons md-24">face</i>Fornecedores</a>
+                <a href="{% url 'fornecedor_list' %}" class="dropdown-item">Lista de Fornecedores</a>
                 <div class="dropdown-divider"></div>
                 <a href="{% url 'estoque_new' %}" class="dropdown-item">Nova Movimentação</a>
                 <a class="dropdown-item" href="#">Movimentações</a>
@@ -100,9 +96,6 @@ eco
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <span class="material-icons">
-notifications_none
-</span>
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
           </form>
