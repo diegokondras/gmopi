@@ -9,4 +9,5 @@ mysqlclient
 django-crispy-forms
 django-tables2
 djangorestframework
-markdowndjango-filter
+markdown
+django-filter
