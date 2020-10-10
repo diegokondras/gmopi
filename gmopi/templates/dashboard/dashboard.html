@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>dfffffffffff</h2>
+  <div id="container" style="width: 75%;">
+    <canvas id="produto-chart" data-url="{% url 'produto-chart' %}"></canvas>
+  </div>
+  <script>
+
+    $(function () {
+
+      var $produtoChart = $("#produto-chart");
+      $.ajax({
+        url: $produtoChart.data("url"),
+        success: function (data) {
+
+          var ctx = $produtoChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Produtos',
+                backgroundColor: 'blue',
+                data: data.data
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'produtos categoria'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+
+  </script>
+
+{% endblock %}

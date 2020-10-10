@@ -1,0 +1,8 @@
+{# gmopi/templates/equipamento/equipamento_list.html #}
+{% extends 'blog/base.html' %}
+{% block content %}
+<h2>Equipamentos</h2>
+<br>
+{% load render_table from django_tables2 %}
+  {% render_table table %}
+{% endblock content %}
