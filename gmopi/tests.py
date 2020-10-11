@@ -1,6 +1,5 @@
 from django.test import TestCase
-from django.test import TestCase
-from .models import Fornecedor, CategoriaProduto, Produto, Estoque, PessoaFisica, Equipamento, Dimensoes, Compensado, Tora, Lamina
+from .models import Fornecedor, CategoriaProduto, Produto, Estoque, PessoaFisica, Equipamento, Dimensoes, Compensado, Tora, Lamina, FornecedorPF, FornecedorPJ, Vigencia, Contrato
 
 class ProdutoTestCase(TestCase):
     def setUp(self):
@@ -49,12 +48,36 @@ class ToraTestCase(TestCase):
 
 class LaminaTestCase(TestCase):
 
-    def lamina_tora(self):
+    def test_lamina(self):
         lamina1 = Lamina.objects.get(classe="2")
         self.assertEqual(tora1.classe, "2")
 
 class CompensadoTestCase(TestCase):
 
-    def compensado_tora(self):
+    def test_compensado(self):
         comp1 = Compensado.objects.get(numero_camadas="2", dimensoes="")
         self.assertEqual(tora1.numero_camadas, "2")
+
+class FornecedorPFTestCase(TestCase):
+
+    def test_fornecedorpf(self):
+        f1 = FornecedorPF.objects.get(data_inicio="28/10/2018")
+        self.assertEqual(f1.data_inicio, "28/10/2018")
+
+class FornecedorPJTestCase(TestCase):
+
+    def test_fornecedorpj(self):
+        fpj1 = FornecedorPJ.objects.get(data_inicio="28/10/2019")
+        self.assertEqual(fpj1.data_inicio, "28/10/2019")
+
+class VigenciaTestCase(TestCase):
+
+    def test_vigencia(self):
+        v1 = Vigencia.objects.get(data_inicio="28/10/2019", data_fim="28/10/2021")
+        self.assertEqual(v1.data_inicio, "28/10/2019")
+
+class ContratoTestCase(TestCase):
+
+    def test_contrato(self):
+        v1 = Contrato.objects.get(data_aquisição="28/10/2019", plano_adquirido="Básico", dia_vencimento="28/10/2021", vigencia="")
+        self.assertEqual(v1.plano_adquirido, "Básico")

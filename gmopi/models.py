@@ -22,6 +22,13 @@ class CategoriaProduto(models.Model):
         return self.nome
 
 
+class MetaProducao(models.Model):
+    nome = models.CharField(max_length=100)
+    valor = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome
+
 class Dimensoes(models.Model):
     espessura = models.CharField(max_length=100, null=True, blank=True)
     comprimento = models.CharField(max_length=100, null=True, blank=True)
