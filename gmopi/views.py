@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic import UpdateView
 
 from .forms import FornecedorForm, CategoriaProdutoForm, ProdutoForm, EquipamentoForm, MovimentacaoEstoqueForm
-from .models import Fornecedor, CategoriaProduto, Produto, Equipamento
+from .models import Fornecedor, CategoriaProduto, Produto, Equipamento, Lamina, Compensado, Tora, Vigencia, Contrato
 from django.core.mail import send_mail, BadHeaderError
 from .forms import ContatoForm
 import logging
@@ -23,7 +23,7 @@ from .tables import ProdutoTable, FornecedorTable, EquipamentoTable, CategoriaPr
 
 # Rest Framework
 from rest_framework import generics
-from .serializers import ProdutoSerializer, CategoriaProdutoSerializer, EquipamentoSerializer
+from .serializers import ProdutoSerializer, CategoriaProdutoSerializer, EquipamentoSerializer, CompensadoSerializer, LaminaSerializer, ToraSerializer, VigenciaSerializer, ContratoSerializer
 
 # Create your views here.
 
@@ -35,9 +35,29 @@ class CategoriaProdutoList(generics.ListCreateAPIView):
     queryset = Produto.objects.all()
     serializer_class = CategoriaProdutoSerializer
 
-class EquipamentoProdutoList(generics.ListCreateAPIView):
+class EquipamentoList(generics.ListCreateAPIView):
     queryset = Produto.objects.all()
     serializer_class = EquipamentoSerializer
+
+class ToraList(generics.ListCreateAPIView):
+    queryset = Tora.objects.all()
+    serializer_class = ToraSerializer
+
+class CompensadoList(generics.ListCreateAPIView):
+    queryset = Compensado.objects.all()
+    serializer_class = CompensadoSerializer
+
+class LaminaList(generics.ListCreateAPIView):
+    queryset = Lamina.objects.all()
+    serializer_class = LaminaSerializer
+
+class VigenciaList(generics.ListCreateAPIView):
+    queryset = Vigencia.objects.all()
+    serializer_class = VigenciaSerializer
+
+class ContratoList(generics.ListCreateAPIView):
+    queryset = Contrato.objects.all()
+    serializer_class = ContratoSerializer
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
