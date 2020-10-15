@@ -12,18 +12,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from .local_settings import *
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3)dhrdpzmc@xl-ftsj9$e7f4qk8#d$9adhg&y8e*c)rerf@-g!'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
@@ -86,13 +82,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+
 # Database
+
 DATABASES = {
 	'default': {
-    	'ENGINE': 'django.db.backends.sqlite3',
-    	'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    	'ENGINE': 'django.db.backends.mysql',
+    	'NAME': DB_NAME,
+    	'USER': DB_USER,
+    	'PASSWORD': DB_PASSWORD,
+    	'HOST': DB_HOST,
+    	'PORT': '',
 	}
 }
+
 
 
 
@@ -141,6 +144,34 @@ LOGIN_REDIRECT_URL = '/'
 # Logout
 LOGOUT_REDIRECT_URL = '/'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './tmp/debug.log',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
